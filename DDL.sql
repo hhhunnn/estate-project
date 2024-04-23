@@ -1,3 +1,4 @@
+-- Active: 1706776163239@@127.0.0.1@3306@estate
 # Entity
 # - 사용자
 # - 이메일 인증번호
@@ -37,3 +38,14 @@
 # write_datetime : DATETIME NN DEFAULT(now())
 # view_count : INT NN DEFULT(0)
 # comment : TEXT
+
+## 데이터베이스 생성
+CREATE DATABASE estate;
+USE estate;
+
+## 이메일 인증 번호 테이블 생성
+CREATE TABLE email_auth_number (
+    email VARCHAR(100) PRIMARY KEY,
+    auth_number VARCHAR(4) NOT NULL
+);
+
