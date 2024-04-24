@@ -25,7 +25,7 @@ public class AuthServiceImplimentation implements AuthService {
         try {
 
             String userId = dto.getUserId();
-            boolean existedUser = userRepository.existByUserId(userId);
+            boolean existedUser = userRepository.existsByUserId(userId);
             if (existedUser) return ResponseDto.duplicatedId();
 
         } catch (Exception exception) {

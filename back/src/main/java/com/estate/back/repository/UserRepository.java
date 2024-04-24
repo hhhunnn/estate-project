@@ -9,8 +9,8 @@ import com.estate.back.entity.UserEntity;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, String> {
 
-    boolean existByUserId(String userId);
+    boolean existsByUserId(String userId);
 
     // 단일형태로 (예상되는 레코드 개수 0 또는 1개)
-    UserEntity findfindByUserId(String userId);
+    UserEntity findByUserId(String userId);
 }

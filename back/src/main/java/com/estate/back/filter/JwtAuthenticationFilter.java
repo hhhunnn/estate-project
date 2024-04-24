@@ -61,8 +61,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         return;
                     }
                     // 접근 주체에 권한을 확인 (user테이블에 있는 값을 가져옴 -> repository 걸쳐서)
-                    // findfindByUserId(예상되는 개수 0개 또는 1개)
-                    UserEntity userEntity = userRepository.findfindByUserId(userId);
+                    // findByUserId(예상되는 개수 0개 또는 1개)
+                    UserEntity userEntity = userRepository.findByUserId(userId);
                     // String role = userEntity.getUserRole(); // null일 경우 nullpoint exception 발생할 수 있음(항상 null 확인 해야함)
                     if (userEntity == null) {
                         filterChain.doFilter(request, response);
