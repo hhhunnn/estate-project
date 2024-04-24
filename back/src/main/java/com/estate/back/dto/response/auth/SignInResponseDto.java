@@ -21,7 +21,7 @@ public class SignInResponseDto extends ResponseDto {
         this.accessToken = accessToken;
         this.expires = 10 * 60 * 60;
     }
-    
+
     public static ResponseEntity<SignInResponseDto> success (String accessToken) {
         SignInResponseDto responseBody = new SignInResponseDto(accessToken);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
