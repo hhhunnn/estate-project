@@ -28,5 +28,11 @@ public class UserEntity {
     // AuthServiceImpementation에서 하면 코드가 길어지기때문에 생성자를 따로 만들어줌
     public UserEntity (SignUpRequestDto dto) {
 
+        this.userId = dto.getUserId();
+        this.userPassword = dto.getUserPassword();
+        this.userEmail = dto.getUserEmail();
+        this.userRole = "ROLE_USER";
+        this.joinPath = "HOME";
+
     }
 }
