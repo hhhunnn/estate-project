@@ -1,5 +1,7 @@
 package com.estate.back.entity;
 
+import com.estate.back.dto.request.auth.SignUpRequestDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -22,4 +24,9 @@ public class UserEntity {
     private String userEmail;
     private String userRole;
     private String joinPath;
+
+    // AuthServiceImpementation에서 하면 코드가 길어지기때문에 생성자를 따로 만들어줌
+    public UserEntity (SignUpRequestDto dto) {
+
+    }
 }
