@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router';
 import { AUTH_PATH, LOCAL_PATH, QNA_DETAIL_PATH, QNA_PATH, QNA_UPDATE_PATH, QNA_WRITE_PATH, RATIO_PATH, SERVICE_PATH } from './constant';
@@ -11,9 +11,27 @@ import QnaWrite from './views/service/qna/QnaWrite';
 import QnaDetail from './views/service/qna/QnaDetail';
 import Ratio from './views/service/Ratio';
 
+// component: root 경로 컴포넌트
+function Index() {
+
+  //            effect              //
+  useEffect(() => {
+
+  }, []);
+
+  //            render             //
+  return <></>;
+
+}
+
+
+// component: Application 컴포넌트
 function App() {
+
+  //            render             //
   return (
     <Routes>
+      <Route index element={<Index />} />
       <Route path={AUTH_PATH} element={<Authentication />} />
       <Route path={SERVICE_PATH} element={<ServiceContainer />} >
         <Route path={LOCAL_PATH} element={<Local />} />
