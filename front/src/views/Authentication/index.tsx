@@ -126,38 +126,21 @@ function SignUp ({ onLinkClickHandler }: Props) {
 
 
   //        function          //
-   const idCheckResponse = (result: ResponseDto | null) => {
+  const idCheckResponse = (result: ResponseDto | null) => {
 
-    if (!result) {
-      setIdMessage('서버에 문제가 있습니다.');
-      setIdError(true);
-      setIdCheck(false);
-      return;
-    }
-    const { code } = result;
-    if (code === 'VF') {
-      setIdMessage('아이디는 빈 값 혹은 공백으로만 이루어질 수 없습니다.');
-      setIdError(true);
-      setIdCheck(false);
-      return;
-    }
-    if (code === 'DI') {
-      setIdMessage('이미 사용중인 아이디입니다.');
-      setIdError(true);
-      setIdCheck(false);
-      return;
-    }
-    if (code === 'DBE') {
-      setIdMessage('서버에 문제가 있습니다.');
-      setIdError(true);
-      setIdCheck(false);
-      return;
-    }
-    if (code === 'SU') {
-      setIdMessage('사용 가능한 아이디입니다.')
-      setIdError(false);
-      setIdCheck(true);
-    }
+    const idMessage = !result ? '서버에 문제가 있습니다.' :
+                  result.code === 'VF' ? '아이디는 빈 값 혹은 공백으로만 이루어질 수 없습니다.' :
+                  result.code === 'DI' ? '이미 사용중인 아이디입니다.' :
+                  result.code === 'DBE' ? '서버에 문제가 있습니다.' :
+                  result.code === 'SU' ? '사용 가능한 아이디입니다.' : '';
+    
+    const idError = !(result && result.code !== 'SU');
+    const idCheck = !idError;
+
+    setIdMessage(idMessage);
+    setIdError(idError);
+    setIdCheck(idCheck);
+
   };
 
 
