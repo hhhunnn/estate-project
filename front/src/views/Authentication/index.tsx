@@ -4,8 +4,8 @@ import './style.css';
 import SignInBackground from 'src/assets/image/sign-in-background.png';
 import SignUpBackground from 'src/assets/image/sign-up-background.png';
 import InputBox from 'src/component/Inputbox';
-import { IdCheckRequestDto } from 'src/apis/auth/dto/request';
-import { IdCheckRequest } from 'src/apis/auth';
+import { EmailAuthRequestDto, IdCheckRequestDto } from 'src/apis/auth/dto/request';
+import { IdCheckRequest, emailAuthRequest } from 'src/apis/auth';
 import ResponseDto from 'src/apis/response.dto';
 
 type AuthPage = 'sign-in' | 'sign-up';
@@ -143,6 +143,27 @@ function SignUp ({ onLinkClickHandler }: Props) {
 
   };
 
+  const emailAuthResponse = (result: ResponseDto | null) => {
+    const emailMessage = 
+      !result ? '서버에 문제가 있습니다.' :
+      result.code === 'VF' ? '이메일 형식이 아닙니다.' :
+      result.code === 'DE' ? '중복된 이메일입니다.' :
+      result.code === 'MF' ? '인증번호 전송에 실패했습니다.' :
+      result.code === 'DBE' ? '서버에 문제가 있습니다.' :
+      result.code === 'SU' ? '인증번호가 전송되었습니다.' :
+      '';
+
+    const emailCheck = result !== null && result.code === 'SU';
+    const emailError = !emailCheck;
+
+    setEmailMessage(emailMessage);
+    setEmailError(emailError);
+    setEmailCheck(emailCheck);
+  }
+
+
+
+
 
   //   event handler   //
   const onIdChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -212,12 +233,16 @@ function SignUp ({ onLinkClickHandler }: Props) {
 
     const emailPattern = /^[a-zA-Z0-9]*@([-.]?[a-zA-Z0-9])*\.[a-zA-Z]{2,4}$/;
     const isEmailPattern = emailPattern.test(email);
-    setEmailCheck(isEmailPattern);
-    setEmailError(!isEmailPattern);
-
-    const emailMessage = isEmailPattern ? '인증번호가 전송되었습니다.' : '이메일 형식이 아닙니다.';
-    setEmailMessage(emailMessage);
+    if (!isEmailPattern) {
+      setEmailMessage('이메일 형식이 아닙니다.');
+      setEmailError(true);
+      setEmailCheck(false);
+      return;
+    }
+    const requestBody: EmailAuthRequestDto = {userEmail: email};
+    emailAuthRequest(requestBody).then(emailAuthResponse);
   }
+
 
   const onAuthNumberChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
