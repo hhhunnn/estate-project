@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { Route, Routes } from 'react-router';
-import { AUTH_PATH, LOCAL_PATH, QNA_DETAIL_PATH, QNA_PATH, QNA_UPDATE_PATH, QNA_WRITE_PATH, RATIO_PATH, SERVICE_PATH } from './constant';
+import { Route, Routes, useNavigate } from 'react-router';
+import { AUTH_ABSOLUTE_PATH, AUTH_PATH, LOCAL_ABSOLUTE_PATH, LOCAL_PATH, QNA_DETAIL_PATH, QNA_PATH, QNA_UPDATE_PATH, QNA_WRITE_PATH, RATIO_PATH, SERVICE_PATH } from './constant';
 import Authentication from './views/Authentication';
 import ServiceContainer from './layouts/ServiceContainer';
 import Local from './views/service/Local';
@@ -10,13 +10,22 @@ import NotFound from './views/NotFound';
 import QnaWrite from './views/service/qna/QnaWrite';
 import QnaDetail from './views/service/qna/QnaDetail';
 import Ratio from './views/service/Ratio';
+import { useCookies } from 'react-cookie';
 
 // component: root 경로 컴포넌트
 function Index() {
 
+  //            state              //
+  const [cookies] = useCookies();
+
+  //            function            //
+  const navigator = useNavigate();
+
   //            effect              //
   useEffect(() => {
-
+    const accessToken = cookies.accessToken;
+    if (accessToken) navigator(LOCAL_ABSOLUTE_PATH);
+    else navigator(AUTH_ABSOLUTE_PATH);
   }, []);
 
   //            render             //
