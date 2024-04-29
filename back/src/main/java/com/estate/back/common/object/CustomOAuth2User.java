@@ -16,6 +16,7 @@ public class CustomOAuth2User implements OAuth2User {
     private Map<String, Object> attributes;
     private Collection<? extends GrantedAuthority> authorities;
 
+    // 캡슐화되어있어서 getter 사용
     public CustomOAuth2User(String id, Map<String, Object> attributes) {
         this.id = id;
         this.attributes = attributes;
