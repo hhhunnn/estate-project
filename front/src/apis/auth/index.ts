@@ -19,7 +19,7 @@ import { requestErrorHandler, requestHandler } from "..";
 
 // function: 로그인 API 함수
 // 비동기처리 되기때문에 async로 동기처리해줘야함
-export const SignInRequest = async (requestBody: SignInRequestDto) => {
+export const signInRequest = async (requestBody: SignInRequestDto) => {
     const result = await axios.post(SIGN_IN_REQUEST_URL, requestBody)
     // 성공할때는 then() 실패하면 catch()로 받음 
     // 아이디 중복 확인 API 함수와 성공, 실패 부분 거의 동일 -> apis 폴더에서 index.ts에서 만들어줌
