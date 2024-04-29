@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HttpBasicConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -16,6 +17,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 
 import com.estate.back.filter.JwtAuthenticationFilter;
+import com.estate.back.service.implementation.OAuth2UserServiceImplementation;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,6 +34,7 @@ import lombok.RequiredArgsConstructor;
 public class WebSecurityConfig {
 
         private final JwtAuthenticationFilter jwtAuthenticationFilter;
+        private final OAuth2UserServiceImplementation oAuth2UserService;
 
         @Bean
         protected SecurityFilterChain configure(HttpSecurity httpSecurity)
@@ -47,6 +50,7 @@ public class WebSecurityConfig {
                                 // 클라이언트가 서버로 요청보냄(보낼 형식)
                                 .authorizationEndpoint(endpoint -> endpoint.baseUri("/api/v1/auth/oauth2"))
                                         .redirectionEndpoint(endpoint -> endpoint.baseUri("/oauth2/callback/*"))
+                                        .userInfoEndpoint(endpoint -> endpoint.userService(oAuth2UserService))
                                 )
                                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
