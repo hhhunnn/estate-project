@@ -45,6 +45,21 @@
     color: rgba(64, 64, 64, 1);
 }
 
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.top-bar-role {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 175%;
+
+    color: rgba(138, 146, 165, 1);
+}
+
 .side-navigation-container {
     grid-area: sidenav;
     padding: 16px 12px;

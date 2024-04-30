@@ -33,7 +33,10 @@ function TopBar ({ path }: Props) {
       <div className="logo-container">임대주택 가격 서비스</div>
       <div className="top-bar-container">
         <div className="top-bar-title">{ path }</div>
-        <div className="second-button" onClick={onLogoutClickHandler} >로그아웃</div>
+        <div className='top-bar-right'>
+          <div className='top-bar-role'>관리자</div>
+          <div className="second-button" onClick={onLogoutClickHandler} >로그아웃</div>
+        </div>
       </div>
     </>
   );
