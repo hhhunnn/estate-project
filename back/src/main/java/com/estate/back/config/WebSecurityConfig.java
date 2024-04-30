@@ -48,6 +48,10 @@ public class WebSecurityConfig {
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                                 .cors(cors -> cors
                                                 .configurationSource(corsConfigurationSource()))
+                                .authorizeHttpRequests(request -> request
+                                        .requestMatchers("/", "/api/v1/auth/**", "/oauth2/callback/*").permitAll()
+                                        .anyRequest().authenticated()
+                                )
                                 .oauth2Login(oauth2 -> oauth2 // 카카오 네이버 API 관련
                                 // 클라이언트가 서버로 요청보냄(보낼 형식)
                                 .authorizationEndpoint(endpoint -> endpoint.baseUri("/api/v1/auth/oauth2"))
