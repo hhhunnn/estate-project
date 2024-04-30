@@ -82,15 +82,24 @@
 }
 
 .side-navigation-icon.chart {
+    background-image: url('../../assets/image/chart-fill-icon.png');
+}
+.active > .side-navigation-icon.chart {
     background-image: url('../../assets/image/chart-icon.png');
 }
 
 .side-navigation-icon.pie {
     background-image: url('../../assets/image/pie-icon.png');
 }
+.active > .side-navigation-icon.pie {
+    background-image: url('../../assets/image/pie-fill-icon.png');
+}
 
 .side-navigation-icon.edit {
     background-image: url('../../assets/image/edit-icon.png');
+}
+.active > .side-navigation-icon.edit {
+    background-image: url('../../assets/image/edit-fill-icon.png');
 }
 
 
