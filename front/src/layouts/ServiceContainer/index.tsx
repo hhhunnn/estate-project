@@ -3,6 +3,10 @@ import './style.css'
 import { Outlet, useLocation, useNavigate } from 'react-router'
 import { AUTH_ABSOLUTE_PATH, LOCAL_ABSOLUTE_PATH, QNA_LIST_ABSOLUTE_PATH, RATIO_ABSOLUTE_PATH } from 'src/constant';
 import { useCookies } from 'react-cookie';
+import { getSignInUserRequest } from 'src/apis/user';
+import { GetSignInUserResponseDto } from 'src/apis/user/dto/response';
+import ResponseDto from 'src/apis/response.dto';
+import useUserStore from 'src/stores/user.store';
 
 type Path = '지역 평균' | '비율 계산' | 'Q&A 게시판' | '';
 
@@ -15,8 +19,10 @@ interface Props {
 function TopBar ({ path }: Props) {
 
   //            state               //
+  const { loginUserRole } = useUserStore();
   // 쓰지 않아도 꼭 가져와야함
   const [cookies, setCookie, removeCookie] = useCookies();
+  
 
   //            function               //
   const navigator = useNavigate();
@@ -34,7 +40,8 @@ function TopBar ({ path }: Props) {
       <div className="top-bar-container">
         <div className="top-bar-title">{ path }</div>
         <div className='top-bar-right'>
-          <div className='top-bar-role'>관리자</div>
+          {/* 조건부 렌더링 : if문 사용불가 -> 연산자 사용 */}
+          { loginUserRole === 'ROLE_ADMIN' && <div className='top-bar-role'>관리자</div> }
           <div className="second-button" onClick={onLogoutClickHandler} >로그아웃</div>
         </div>
       </div>
@@ -84,16 +91,49 @@ export default function ServiceContainer() {
   //            state               //
   const { pathname } = useLocation();
   // console.log(pathname);
+  const { setLoginUserId, setLoginUserRole } = useUserStore();
+  const [cookies] = useCookies();
   const [path, setPath] = useState<Path>('');
 
+  //            function             //
+  const getSignInUserResponse = (result: GetSignInUserResponseDto | ResponseDto | null) => {
+
+    const message = 
+      !result ? '서버에 문제가 있습니다.' :
+      result.code === 'AF' ? '인증에 실패했습니다.' :
+      result.code === 'DBE' ? '서버에 문제가 있습니다.' : '';
+
+      if (!result || result.code !== 'SU') {
+        alert(message);
+        return;
+      }
+
+      const { userId, userRole } = result as GetSignInUserResponseDto; // userId, userRole을 형변환 해줘야함
+      setLoginUserId(userId);
+      setLoginUserRole(userRole);
+
+  };
+
+  //              effect            //
   useEffect(() => {
     const path =
       pathname === LOCAL_ABSOLUTE_PATH ? '지역 평균' :
       pathname === RATIO_ABSOLUTE_PATH ? '비율 계산' :
       pathname.startsWith(QNA_LIST_ABSOLUTE_PATH) ? 'Q&A 게시판' : '지역 평균';
+
     setPath(path);
 
   }, [pathname]);
+
+  useEffect(() => {
+
+    if (!cookies.accessToken) {
+      return;
+    }
+
+    getSignInUserRequest(cookies.accessToken).then(getSignInUserResponse)
+
+  }, [cookies.accessToken]);
 
   return (
     <div id="wrapper">
