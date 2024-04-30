@@ -510,20 +510,19 @@ Content-Type: application/json;charset=UTF-8
 
 ***
 
-
 <h2 style='background-color: rgba(55, 55, 55, 0.2); text-align: center'>User 모듈</h2>
 
-사용자 정보와 관련된 REST API 모듈 
+사용자 정보와 관련된 REST API 모듈
   
 - url : /api/v1/user  
 
 ***
 
-#### - 로그인 유저 정보 반환
+#### - 로그인 유저 정보 반환  
   
 ##### 설명
 
-클라이언트로부터 Request Header의 Authorization 필드로 Bearer 토큰을 포함하여 요청을 받으면 해당 토큰의 작성자(subject)에 해당하는 사용자 정보를 반환,
+클라이언트로부터 Request Header의 Authorization 필드로 Bearer 토큰을 포함하여 요청을 받으면 해당 토큰의 작성자(subject)에 해당하는 사용자 정보를 반환, 
 
 - method : **POST**  
 - URL : **/sign-in**  
