@@ -634,8 +634,10 @@ Q&A 게시물과 관련된 REST API 모듈
 ###### Example
 
 ```bash
-curl -v -X GET "http://localhost:4000/api/v1/user/" \
- -H "Authorization: Bearer {JWT}"
+curl -v -X GET "http://localhost:4000/api/v1/board/" \
+ -H "Authorization: Bearer {JWT}" \
+ -d "title={title}" \
+ -d "contents={contents} 
 ```
 
 ##### Response
@@ -644,6 +646,7 @@ curl -v -X GET "http://localhost:4000/api/v1/user/" \
 
 | name | description | required |
 |---|:---:|:---:|
+| title | String | Q&A 제목 | 0 |
 | Content-Type | 반환하는 Response Body의 Content Type (application/json) | O |
 
 ###### Response Body
@@ -657,6 +660,7 @@ curl -v -X GET "http://localhost:4000/api/v1/user/" \
 
 ###### Example
 
+
 **응답 성공**
 ```bash
 HTTP/1.1 200 OK
@@ -666,6 +670,16 @@ Content-Type: application/json;charset=UTF-8
   "message": "Success.",
   "userId": "${userId}",
   "userRole": "${userRole}"
+}
+```
+
+**응답 : 실패 (데이터 유효성 검사 실패)**
+```bash
+HTTP/1.1 403 Bad Request
+Content-Type: application/json;charset=UTF-8
+{
+  "code": "AF",
+  "message": "Authorization Failed."
 }
 ```
 
