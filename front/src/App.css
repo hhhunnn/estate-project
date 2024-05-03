@@ -124,6 +124,46 @@
     }
   }
   
+  
+
+
+.primary-bedge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(58, 87, 232, 1);
+
+    border-radius: 10px;
+    width: 45px;
+    height: 20px;
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+
+    color: rgba(255, 255, 255, 1);
+}
+
+.disable-bedge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(238, 238, 238, 1);
+
+    border-radius: 10px;
+    width: 45px;
+    height: 20px;
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+
+    color: rgba(138, 146, 166, 1);
+}
+
+
   .App-header {
     background-color: #282c34;
     min-height: 100vh;
