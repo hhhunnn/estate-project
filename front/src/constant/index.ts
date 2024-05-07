@@ -42,5 +42,5 @@ export const GET_SEARCH_BOARD_LIST_URL = (searchWord: string) => `${SERVER_BOARD
 
 
 // description: 게시물 상수
-export const COUNT_PER_PAGE = 10;
-export const COUNT_PER_SECTION = 10;
+export const COUNT_PER_PAGE = 1;
+export const COUNT_PER_SECTION = 2;
