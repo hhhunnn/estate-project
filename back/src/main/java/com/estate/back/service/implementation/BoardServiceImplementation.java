@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.estate.back.dto.request.board.PostBoardRequestDto;
+import com.estate.back.dto.request.board.PostCommentRequestDto;
 import com.estate.back.dto.response.ResponseDto;
 import com.estate.back.dto.response.board.GetBoardListResponseDto;
 import com.estate.back.dto.response.board.GetBoardResponseDto;
@@ -100,6 +101,32 @@ public class BoardServiceImplementation implements BoardService {
             if (boardEntity == null) return ResponseDto.noExistBoard();
 
             boardEntity.increaseViewCount();
+            boardRepository.save(boardEntity);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return ResponseDto.success();
+
+    }
+
+    @Override
+    public ResponseEntity<ResponseDto> postComment(PostCommentRequestDto dto, int receptionNumber) {
+
+        try {
+
+            BoardEntity boardEntity = boardRepository.findByReceptionNumber(receptionNumber);
+            if (boardEntity == null) return ResponseDto.noExistBoard();
+
+            boolean status = boardEntity.getStatus();
+            if (status) return ResponseDto.writtenComment();
+
+            String comment = dto.getComment();
+            boardEntity.setStatus(true);
+            boardEntity.setComment(comment);
+
             boardRepository.save(boardEntity);
 
         } catch (Exception exception) {
