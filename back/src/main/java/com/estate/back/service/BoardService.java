@@ -12,5 +12,6 @@ public interface BoardService {
     ResponseEntity<ResponseDto> postBoard(PostBoardRequestDto dto, String userId);
     ResponseEntity<? super GetBoardListResponseDto> getBoardList();
     ResponseEntity<? super GetSearchBoardListResponseDto> getSearchBoardList(String searchWord);
+    ResponseEntity<? super GetBoardListResponseDto> getBoard(int receptionNumber);
 
 }

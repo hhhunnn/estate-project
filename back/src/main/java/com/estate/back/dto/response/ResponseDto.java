@@ -21,7 +21,7 @@ public class ResponseDto {
 
     public static ResponseEntity<ResponseDto> validationFailed() {
         ResponseDto responseBody =
-            new ResponseDto(ResponseCode.VARIDATION_FAILED, ResponseMessage.VARIDATION_FAILED);
+            new ResponseDto(ResponseCode.VALIDATION_FAILED, ResponseMessage.VALIDATION_FAILED);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }
 
@@ -34,6 +34,12 @@ public class ResponseDto {
     public static ResponseEntity<ResponseDto> duplicatedEmail() {
         ResponseDto responseBody =
             new ResponseDto(ResponseCode.DUPLICATED_EMAIL, ResponseMessage.DUPLICATED_EMAIL);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
+    }
+
+    public static ResponseEntity<ResponseDto> noExistEmail() {
+        ResponseDto responseBody =
+            new ResponseDto(ResponseCode.NO_EXIST_BOARD, ResponseMessage.NO_EXIST_BOARD);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }
 

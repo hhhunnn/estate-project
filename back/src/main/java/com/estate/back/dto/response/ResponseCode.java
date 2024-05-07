@@ -13,9 +13,10 @@ package com.estate.back.dto.response;
 // Response의 공통된 code 값
 public interface ResponseCode {
     String SUCCESS = "SU";
-    String VARIDATION_FAILED = "VF";
+    String VALIDATION_FAILED = "VF";
     String DUPLICATED_ID = "DI";
     String DUPLICATED_EMAIL = "DE";
+    String NO_EXIST_BOARD = "NB";
     String SIGN_IN_FAILED = "SF";
     String AUTHENTICATION_FAILED = "AF";
     String TOKEN_CREATION_FAILED = "TF";
