@@ -86,6 +86,8 @@ export default function QnaDetail() {
     }, []);
     
     //                    render                    //
+    const coveredWriterId = writerId !== '' && (writerId[0] + '*'.repeat(writerId.length-1));
+    
     return (
         <div id='qna-detail-wrapper'>
             <div className='qna-detail-main-box'>
