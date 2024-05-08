@@ -54,7 +54,7 @@ function App() {
           {/*  */}
           <Route path={QNA_WRITE_PATH} element={<QnaWrite />} />
           <Route path={QNA_DETAIL_PATH} element={<QnaDetail />} />
-          <Route path={QNA_UPDATE_PATH} element={<QnaWrite />} />
+          <Route path={QNA_UPDATE_PATH} element={<QnaUpdate />} />
         </Route>
       </Route>
       <Route path='*' element={<NotFound />} />

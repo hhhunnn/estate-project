@@ -8,7 +8,7 @@ export const RATIO_PATH = 'ratio';
 export const QNA_PATH = 'qna';
 export const QNA_WRITE_PATH = 'write';
 export const QNA_DETAIL_PATH = ':receptionNumber';
-export const QNA_UPDATE_PATH = 'update/:boardNumber';
+export const QNA_UPDATE_PATH = 'update/:receptionNumber';
 
 // description: Navigation 절대 URL PATH
 export const AUTH_ABSOLUTE_PATH = AUTH_PATH;
