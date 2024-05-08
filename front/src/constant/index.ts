@@ -48,5 +48,5 @@ export const DELETE_BOARD_URL = (receptionNumber: number | string) => `${SERVER_
 
 
 // description: 게시물 상수
-export const COUNT_PER_PAGE = 1;
-export const COUNT_PER_SECTION = 2;
+export const COUNT_PER_PAGE = 10;
+export const COUNT_PER_SECTION = 10;
