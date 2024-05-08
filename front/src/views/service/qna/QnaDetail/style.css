@@ -58,6 +58,8 @@
     line-height: 24px;
 
     color: rgba(64, 64, 64, 1);
+
+    white-space: pre-wrap;
 }
 
 .qna-detail-button-box {
@@ -88,10 +90,13 @@
     line-height: 24px;
 
     color: rgba(64, 64, 64, 1);
+
+    white-space: pre-wrap;
 }
 
 .qna-detail-comment-write-box {
     display: flex;
+    align-items: start;
     gap: 12px;
 }
 

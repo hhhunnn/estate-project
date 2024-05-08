@@ -5,7 +5,7 @@ import { getBoardRequest, increaseViewCountRequest, postCommentRequest } from 's
 import { useCookies } from 'react-cookie';
 import { useNavigate, useParams } from 'react-router';
 import ResponseDto from 'src/apis/response.dto';
-import { AUTH_ABSOLUTE_PATH, QNA_LIST_ABSOLUTE_PATH } from 'src/constant';
+import { AUTH_ABSOLUTE_PATH, QNA_LIST_ABSOLUTE_PATH, QNA_UPDATE_ABSOLUTE_PATH } from 'src/constant';
 import { GetBoardResponseDto } from 'src/apis/board/dto/response';
 import { PostCommentRequestDto } from 'src/apis/board/dto/request';
 
@@ -26,6 +26,7 @@ export default function QnaDetail() {
     const [contents, setContents] = useState<string>('');
     const [status, setStatus] = useState<boolean>(false);
     const [comment, setComment] = useState<string | null>(null);
+    const [commentRows, setCommentRows] = useState<number>(1);
 
     //                    function                    //
     const navigator = useNavigate();
@@ -107,9 +108,8 @@ export default function QnaDetail() {
         const comment = event.target.value;
         setComment(comment);
 
-        if (!commentRef.current) return;
-        commentRef.current.style.height = 'auto';
-        commentRef.current.style.height = `${commentRef.current.scrollHeight }px`;
+        const commetRows = comment.split('\n').length;
+        setCommentRows(commentRows);
     };
 
     const onCommentSubmitClickHandler = () => {
@@ -118,6 +118,19 @@ export default function QnaDetail() {
 
         const requestBody: PostCommentRequestDto = { comment };
         postCommentRequest(receptionNumber, requestBody, cookies.accessToken).then(postCommentResponse);
+    };
+
+    const onListClickHandler = () => {
+        navigator(QNA_LIST_ABSOLUTE_PATH);
+    };
+
+    const onUpdateClickHandler = () => {
+        if (!receptionNumber || loginUserId !== writerId) return;
+        navigator(QNA_UPDATE_ABSOLUTE_PATH(receptionNumber));
+    };
+
+    const onDeleteClickHandler = () => {
+
     };
     
     //                    effect                    //
@@ -147,7 +160,7 @@ export default function QnaDetail() {
             {loginUserRole === 'ROLE_ADMIN' && !status && 
             <div className='qna-detail-comment-write-box'>
                 <div className='qna-detail-comment-textarea-box'>
-                    <textarea ref={commentRef} className='qna-detail-comment-textarea' placeholder='답글을 작성해주세요.' value={comment === null ? '' : comment} onChange={onCommentChangeHandler} />
+                    <textarea style={{ height: `${28 * commentRows}px` }} className='qna-detail-comment-textarea' placeholder='답글을 작성해주세요.' value={comment === null ? '' : comment} onChange={onCommentChangeHandler} />
                 </div>
                 <div className='primary-button' onClick={onCommentSubmitClickHandler}>답글달기</div>
             </div>
