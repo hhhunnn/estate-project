@@ -34,6 +34,8 @@ export const SERVER_USER_MODULE_URL = `${SERVER_API_URL}/user`;
 
 export const GET_SIGN_IN_USER_REQUEST_URL = `${SERVER_USER_MODULE_URL}/`;
 
+export const POST_COMMENT_REQUEST_URL = (receptionNumber: number | string) => `${SERVER_BOARD_MODULE_URL}/${receptionNumber}/comment`;
+
 export const SERVER_BOARD_MODULE_URL = `${SERVER_API_URL}/board`;
 
 export const POST_BOARD_REQUEST_URL = `${SERVER_BOARD_MODULE_URL}/`;
