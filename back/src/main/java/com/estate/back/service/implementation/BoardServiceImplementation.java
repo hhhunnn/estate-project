@@ -3,6 +3,7 @@ package com.estate.back.service.implementation;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
 import com.estate.back.dto.request.board.PostBoardRequestDto;
@@ -136,6 +137,28 @@ public class BoardServiceImplementation implements BoardService {
 
         return ResponseDto.success();
 
+    }
+
+    @Override
+    public ResponseEntity<ResponseDto> deleteBoard(int receptionNumber, String userId) {
+
+        try {
+
+            BoardEntity boardEntity = boardRepository.findByReceptionNumber(receptionNumber);
+            if(boardEntity == null) return ResponseDto.noExistBoard();
+
+            String writerId = boardEntity.getWriterId();
+            boolean isWriter = userId.equals(writerId);
+            if(!isWriter) return ResponseDto.authorizationFailed();
+
+            boardRepository.delete(boardEntity);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return ResponseDto.success();
     }
     
 }

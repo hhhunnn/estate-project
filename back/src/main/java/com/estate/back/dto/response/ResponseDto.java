@@ -60,6 +60,12 @@ public class ResponseDto {
             new ResponseDto(ResponseCode.AUTHENTICATION_FAILED, ResponseMessage.AUTHENTICATION_FAILED);
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(responseBody);
     }
+    
+    public static ResponseEntity<ResponseDto> authorizationFailed() {
+        ResponseDto responseBody =
+            new ResponseDto(ResponseCode.AUTHORIZATION_FAILED, ResponseMessage.AUTHENTICATION_FAILED);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(responseBody);
+    }
 
     public static ResponseEntity<ResponseDto> tokenCreationFailed() {
         ResponseDto responseBody =

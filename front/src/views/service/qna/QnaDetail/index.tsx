@@ -125,12 +125,16 @@ export default function QnaDetail() {
     };
 
     const onUpdateClickHandler = () => {
-        if (!receptionNumber || loginUserId !== writerId) return;
+        if (!receptionNumber || loginUserId !== writerId || status) return;
         navigator(QNA_UPDATE_ABSOLUTE_PATH(receptionNumber));
     };
 
     const onDeleteClickHandler = () => {
+        if (!receptionNumber || loginUserId !== writerId) return;
+        const isConfirm = window.confirm('정말로 삭제하시겠습니까?');
+        if (!isConfirm) return;
 
+        alert('삭제');
     };
     
     //                    effect                    //
@@ -172,11 +176,11 @@ export default function QnaDetail() {
             </div>
             }
             <div className='qna-detail-button-box'>
-                <div className='primary-button'>목록보기</div>
+                <div className='primary-button' onClick={onListClickHandler}>목록보기</div>
                 {loginUserId === writerId && 
                 <div className='qna-detail-owner-button-box'>
-                    <div className='second-button'>수정</div>
-                    <div className='error-button'>삭제</div>
+                    {!status && <div className='second-button' onClick={onUpdateClickHandler}>수정</div>}
+                    <div className='error-button' onClick={onDeleteClickHandler}>삭제</div>
                 </div>
                 }
             </div>
