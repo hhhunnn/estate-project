@@ -32,7 +32,6 @@ export default function QnaUpdate() {
             result.code === 'AF' ? '인증에 실패했습니다.' :
             result.code === 'NB' ? '존재하지 않는 접수 번호입니다.' :
             result.code === 'DBE' ? '서버에 문제가 있습니다.' : '';
-        
         if (!result || result.code !== 'SU') {
             alert(message);
             navigator(QNA_LIST_ABSOLUTE_PATH);
