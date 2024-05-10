@@ -30,10 +30,10 @@ public class GetRatioDataResponseDto extends ResponseDto {
     private List<Double> leaseRatio6085;
     private List<Double> leaseRatio85;
 
-    private List<Double> monthRenteRatio40;
-    private List<Double> monthRenteRatio4060;
-    private List<Double> monthRenteRatio6085;
-    private List<Double> monthRenteRatio85;
+    private List<Double> monthRentRatio40;
+    private List<Double> monthRentRatio4060;
+    private List<Double> monthRentRatio6085;
+    private List<Double> monthRentRatio85;
 
     private GetRatioDataResponseDto (List<GetRatioDataResultSet> resultSets) throws Exception {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
@@ -49,10 +49,10 @@ public class GetRatioDataResponseDto extends ResponseDto {
         this.leaseRatio6085 = new ArrayList<>();
         this.leaseRatio85 = new ArrayList<>();
 
-        this.monthRenteRatio40 = new ArrayList<>();
-        this.monthRenteRatio4060 = new ArrayList<>();
-        this.monthRenteRatio6085 = new ArrayList<>();
-        this.monthRenteRatio85 = new ArrayList<>();
+        this.monthRentRatio40 = new ArrayList<>();
+        this.monthRentRatio4060 = new ArrayList<>();
+        this.monthRentRatio6085 = new ArrayList<>();
+        this.monthRentRatio85 = new ArrayList<>();
 
         for (GetRatioDataResultSet resultSet: resultSets) {
             String originalDate = resultSet.getYearMonth();
@@ -68,10 +68,10 @@ public class GetRatioDataResponseDto extends ResponseDto {
             this.leaseRatio6085.add(resultSet.getLeaseRatio6085());
             this.leaseRatio85.add(resultSet.getLeaseRatio85());
 
-            this.monthRenteRatio40.add(resultSet.getMonthRenteRatio40());
-            this.monthRenteRatio4060.add(resultSet.getMonthRenteRatio4060());
-            this.monthRenteRatio6085.add(resultSet.getMonthRenteRatio6085());
-            this.monthRenteRatio85.add(resultSet.getMonthRenteRatio85());
+            this.monthRentRatio40.add(resultSet.getMonthRentRatio40());
+            this.monthRentRatio4060.add(resultSet.getMonthRentRatio4060());
+            this.monthRentRatio6085.add(resultSet.getMonthRentRatio6085());
+            this.monthRentRatio85.add(resultSet.getMonthRentRatio85());
 
         }
     }

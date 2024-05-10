@@ -14,10 +14,10 @@ public interface GetRatioDataResultSet {
     Double getLeaseRatio6085();
     Double getLeaseRatio85();
 
-    Double getMonthRenteRatio40();
-    Double getMonthRenteRatio4060();
-    Double getMonthRenteRatio6085();
-    Double getMonthRenteRatio85();
+    Double getMonthRentRatio40();
+    Double getMonthRentRatio4060();
+    Double getMonthRentRatio6085();
+    Double getMonthRentRatio85();
 
 
 }
