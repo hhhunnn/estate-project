@@ -52,6 +52,5 @@ public class GetLocalDataResponseDto extends ResponseDto {
         GetLocalDataResponseDto responseBody = new GetLocalDataResponseDto(resultSets);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }
-
     
 }

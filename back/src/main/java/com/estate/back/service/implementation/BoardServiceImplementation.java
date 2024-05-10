@@ -3,7 +3,6 @@ package com.estate.back.service.implementation;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
 import com.estate.back.dto.request.board.PostBoardRequestDto;
