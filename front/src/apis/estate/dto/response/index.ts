@@ -6,3 +6,4 @@ export interface GetLocalDataResponseDto extends ResponseDto {
     lease: number[];
     monthRent: number[];
 }
+
