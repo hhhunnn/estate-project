@@ -6,3 +6,4 @@ public interface GetLocalDataResultSet {
     Integer getLease();
     Integer getMonthRent();
 }
+

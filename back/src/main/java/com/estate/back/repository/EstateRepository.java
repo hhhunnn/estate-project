@@ -15,7 +15,7 @@ public interface EstateRepository extends JpaRepository<EstateEntity, Integer> {
     // "ㅇㅇㅇ " ""안 맨 뒤에 띄어쓰기 해줘야함
     @Query(value=
     "SELECT `year_month` as yearMonth, sale, lease, month_rent as monthRent " + 
-    "FROM estate" +
+    "FROM estate " +
     "WHERE `year_month` BETWEEN '2023-01-01' AND '2023-12-01' " +
     "AND `local` = :local ",
     nativeQuery = true
